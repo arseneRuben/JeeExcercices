@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -20,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AfficherEtudiant", urlPatterns = {"/AfficherEtudiant"})
 public class AfficherEtudiant extends HttpServlet {
 
+    private int nbAccess ;
+    public AfficherEtudiant(){
+        this.nbAccess = 0;
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -68,6 +73,9 @@ public class AfficherEtudiant extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+       // this.nbAccess++;
+       response.addHeader("Refresh", "200");
         processRequest(request, response);
     }
 
