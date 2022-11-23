@@ -1,0 +1,57 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 22, 2022, 1:01:02 PM
+    Author     : isi
+*/
+form {
+    width: 80%;
+    margin: auto;
+}
+fieldset {
+    border: thick double #32a1ce;
+    padding: 10px 40px;
+    
+}
+
+fieldset>div {
+    display: grid;
+    grid-template-areas : "top1 top2" "mid1 mid2" "bottom bottom" "footer footer";
+    column-gap: 10px;
+    row-gap: 15px;
+}
+
+fieldset>div>div {
+    border: solid darkseagreen;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+button {
+    width: 100%;
+}
+fieldset>div>div:nth-child(1){
+    grid-area: top1
+}
+fieldset>div>div:nth-child(2){
+    grid-area: top2
+}
+
+fieldset>div>div:nth-child(3){
+    grid-area: mid1
+}
+fieldset>div>div:nth-child(4){
+    grid-area: mid2
+}
+
+fieldset>div>div:nth-child(5){
+    grid-area: bottom
+}
+fieldset>div>div:nth-child(6){
+    grid-area: footer
+}
