@@ -36,6 +36,6 @@ public class Etudiant {
         
         @Override
         public  String toString(){
-            return this.nom + " " + this.prenom + " "+ this.age;
+            return "<li>"+this.nom + "</li><li>" + this.prenom + "</li><li>"+ this.age + "</li> ";
         }
 }

@@ -55,8 +55,11 @@ public class AfficherEtudiant extends HttpServlet {
     public String stdList(){
         String output = "<ul>";
          Iterator iter = RemplirEtudiant.index().iterator();
+         int i=1;
       while (iter.hasNext()) {
-            output+= "<li>"+ iter.next() + "</li>";
+            
+            output+= "<li> Etudiant No "+ i + " "+ iter.next() + "</li>";
+            i++;
       }
       return output;
     }
