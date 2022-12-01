@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Formulaire parametre</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="treatment">
+            <fieldset>
+                <legend>
+                    Inscription
+                </legend>
+                <div>
+                    <label>Nom
+                        <input type="text" name="lastname" required>
+                    </label> 
+                </div>
+                <div>
+                    <label>Prenom 
+                        <input type="text" name="firstname">
+                    </label>
+                </div>
+                <div>
+                    <label>Cours</label>
+                    <select id="course" name="course">
+                        <option value="java" selected="selected">Java </option>
+                        <option value="cplus">C++</option>
+                        <option value="csharp">C#</option>
+                    </select>
+                    <label class="choice"> <input type="radio" name="taxi" required value="car"> Soir </label>
+                    <label class="choice"> <input type="radio" name="taxi" required value="van"> Jour </label>
+
+                </div>
+                <div>
+                    <input type="checkbox" id="hiver" name="hiver" value="hiver">
+                    <label for="hiver"> Session hiver</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ete" name="ete" value="ete">
+                    <label for="ete"> Session ete</label>
+                </div>
+                <button>Inscription</button>
+            </fieldset>
+        </form>
+    </body>
+
+</html>
