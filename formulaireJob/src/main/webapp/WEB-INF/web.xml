@@ -9,8 +9,7 @@
             30
         </session-timeout>
     </session-config>
-   <welcome-file-list>
-        <welcome-file>animal</welcome-file>
+    <welcome-file-list>
+        <welcome-file>treatement</welcome-file>
     </welcome-file-list>
-   
 </web-app>
