@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.isi</groupId>
-    <artifactId>cookieCompteur</artifactId>
+    <artifactId>CookyCounter</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>cookieCompteur</name>
+    <name>CookyCounter</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
