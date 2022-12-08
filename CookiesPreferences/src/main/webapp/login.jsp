@@ -24,9 +24,9 @@
                     <div class="card px-5 py-5" id="form1">
                         <div class="form-data" v-if="!submitted">
                             <form action="login">
-                            <div class="forms-inputs mb-4"> <span>Nom d'usager</span> <input autocomplete="off" type="text"  name="username" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
+                            <div class="forms-inputs mb-4"> <span>Nom d'usager</span> <input autocomplete="off" type="text" value='<%= userCookie!=null ? userCookie.getValue(): "" %>' name="username" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
                             </div>
-                            <div class="forms-inputs mb-4"> <span>Se rappeler de mon nom d'usager</span> <input  type="checkbox" name="rememberMe" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                            <div class="forms-inputs mb-4"> <span>Se rappeler de mon nom d'usager</span> <input checked=<%= userCookie!=null ? true:false %>  type="checkbox" name="rememberMe" >
                             </div>
                             <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Login</button> </div>
                             </form>
