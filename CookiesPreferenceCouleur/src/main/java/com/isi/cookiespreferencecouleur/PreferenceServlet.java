@@ -24,13 +24,16 @@ public class PreferenceServlet extends HttpServlet {
             throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
         String username = request.getParameter("username");
-         String color = request.getParameter("color");
+        String color = request.getParameter("color");
         request.setAttribute("username", username);
         request.setAttribute("color", color);
 
         if (cookies == null) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }else {
+            response.sendRedirect("login.jsp");
+
+        } else {
+            request.getRequestDispatcher("welcome.jsp").forward(request, response);
+
             response.sendRedirect("welcome.jsp");
         }
 
