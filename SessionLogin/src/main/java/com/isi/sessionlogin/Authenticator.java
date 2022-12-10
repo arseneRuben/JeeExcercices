@@ -2,20 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.isi.loginjsp;
+package com.isi.sessionlogin;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author isi
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Authenticator", urlPatterns = {"/login", "/logout"})
+public class Authenticator extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -27,15 +30,22 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        User user = new User(email, password);
-        request.setAttribute("user", user);
-        if (UserManager.checkUser(user)) {
-            request.getRequestDispatcher("portal.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        HttpSession userSession = request.getSession(true);
+        switch (request.getServletPath()) {
+            case "/login":
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                User user = UserManager.findBy(username, password);
+                if (user != null) {
+                    userSession.setAttribute("user", user);
+                    request.getRequestDispatcher("WEB-INF/portal.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+                }
+                break;
+            case "/logout":
+                response.sendRedirect("index.html");
+                break;
         }
     }
 

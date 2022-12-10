@@ -34,7 +34,6 @@ public class PreferenceServlet extends HttpServlet {
         } else {
             request.getRequestDispatcher("welcome.jsp").forward(request, response);
 
-            response.sendRedirect("welcome.jsp");
         }
 
         // this.print(request, response);
