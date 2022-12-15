@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  *
  * @author isi
  */
-public class MovieManager extends Manager{
+public class MovieManager extends Manager {
+
     public static ArrayList<Movie> findAll() {
         ArrayList<Movie> activities = new ArrayList<>();
         String query = "SELECT * FROM  movie;";
@@ -33,9 +34,9 @@ public class MovieManager extends Manager{
                 float score = result.getFloat("score");
                 int votes = result.getInt("votes");
                 int director = result.getInt("director");
-                Movie act = new Movie(id, title,yr, score, votes, director);
+                Movie act = new Movie(id, title, yr, score, votes, director);
                 activities.add(act);
-                
+
             }
             Manager.closeConnection(connection);
 
@@ -44,4 +45,6 @@ public class MovieManager extends Manager{
         }
         return activities;
     }
+
+   
 }

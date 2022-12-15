@@ -19,19 +19,20 @@
         <title>Exo3a film's years</title>
     </head>
     <%
-        List<Movie> movies = (ArrayList<Movie>) request.getAttribute("movies");;
+        List<String> years = (ArrayList<String>) request.getAttribute("years");;
     %>
     <body>
         <div class="container mt-5">
             <h1> Liste des annees de films </h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
+                    <a><a href="exo3b" class='btn btn-primary' target="target">Liste filtree des films</a>
                 </div>
                 <div class="col-md-6">
                     <select class="form-select" aria-label="Default select example">
                         <option selected> Annees</option>
-                        <% for(Movie movie : movies) { %>
-                        <option value="<%= movie.getYr() %>"> <%= movie.getYr() %></option>
+                        <% for(String year : years) { %>
+                        <option value="<%= year %>"> <%= year %></option>
                         <%}%>
                        
                     </select>

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author isi
  */
-@WebServlet(name = "filmServlet", urlPatterns = {"/exo3a"})
+@WebServlet(name = "filmServlet", urlPatterns = {"/exo3a", "/exo3b"})
 public class filmServlet extends HttpServlet {
 
     /**
@@ -32,13 +32,24 @@ public class filmServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Movie> movies = MovieManager.findAll();
+        List<String> years = MovieManager.findAllYears();
+        request.setAttribute("movies", movies);
+        request.setAttribute("years", years);
         switch (request.getServletPath()) {
             case "/exo3a":
 
-                List<Movie> movies = MovieManager.findAll();
-
-                request.setAttribute("movies", movies);
                 request.getRequestDispatcher("WEB-INF/exo3a.jsp").forward(request, response);
+
+                break;
+            case "/exo3b":
+                String yearS = request.getParameter("selectedYear");
+                if (yearS != null) {
+                    movies = MovieManager.findByYear(yearS);
+                    request.setAttribute("movies", movies);
+
+                }
+                request.getRequestDispatcher("WEB-INF/exo3b.jsp").forward(request, response);
 
                 break;
 
