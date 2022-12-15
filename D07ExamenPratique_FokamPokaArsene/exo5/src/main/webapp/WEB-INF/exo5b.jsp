@@ -17,24 +17,24 @@
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="bootstrap.min.css">
 
-        <title>Exo4b film's actors</title>
+        <title>Exo5a list of prefered actor of user 1</title>
     </head>
     <%
         List<Actor> actors = (ArrayList<Actor>) request.getAttribute("actors");;
     %>
     <body>
         <div class="container mt-5">
-            <h1> Liste des acteurs du film </h1>
+            <h1> Liste des acteurs du preferes de l'utilisateur d'id=1 </h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
-                    <a class="btn btn-primary" href="exo4a"> retour a la liste des films</a>
+                    <a class="btn btn-primary" href="exo4a"> retour a la liste des acteurs</a>
                 </div>
                 <div class="col-md-6">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Nom</th>
-                                <th scope="col">Ajouter</th>
+                                <th scope="col">Suppression</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,7 @@
                             %>
                             <tr>
                                 <td> <%= actor.getName()%></td>
-                                <td> <a href="#">Ajouter</a></td>
+                                <td> <a href="#">Supprimer</a></td>
                             </tr>
                             <%
                               }
