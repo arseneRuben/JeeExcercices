@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%     
     Cookie userCookie = CookyManager.getCookie(request, "username");
+     Cookie rememberMe = CookyManager.getCookie(request, "username");
  %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
                             <form action="login">
                             <div class="forms-inputs mb-4"> <span>Nom d'usager</span> <input autocomplete="off" type="text" value='<%= userCookie!=null ? userCookie.getValue(): "" %>' name="username" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
                             </div>
-                            <div class="forms-inputs mb-4"> <span>Se rappeler de mon nom d'usager</span> <input checked=<%= userCookie!=null ? true:false %>  type="checkbox" name="rememberMe" >
+                            <div class="forms-inputs mb-4"> <span>Se rappeler de mon nom d'usager</span> <input <%= userCookie!=null ? "checked":"" %>  type="checkbox" name="rememberMe" >
                             </div>
                             <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Login</button> </div>
                             </form>

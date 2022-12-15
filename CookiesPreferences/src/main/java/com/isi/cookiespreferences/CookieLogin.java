@@ -23,15 +23,19 @@ public class CookieLogin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
-        Cookie userCookie;
+        Cookie userCookie, rememberCookie;
         request.setAttribute("username", username);
         if ((request.getParameter("rememberMe") != null) && request.getParameter("rememberMe").equals("on")) {
             userCookie = new Cookie("username", username);
+             rememberCookie = new Cookie("rememberMe", request.getParameter("rememberMe"));
             userCookie.setMaxAge(60 * 60);
+            rememberCookie.setMaxAge(60 * 60);
            
         } else {
             userCookie = new Cookie("username", username);
             userCookie.setMaxAge(0);
+             rememberCookie = new Cookie("rememberMe", request.getParameter("rememberMe"));
+            rememberCookie.setMaxAge(0);
           
         }
         

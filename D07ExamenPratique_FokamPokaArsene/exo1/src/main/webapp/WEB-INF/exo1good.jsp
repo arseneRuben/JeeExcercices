@@ -4,7 +4,7 @@
     Author     : isi
 --%>
 
-<%@page import="com.isi.sessionlogin.User"%>
+<%@page import="com.isi.exo1.entity.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -12,19 +12,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles.css">
-        <title>JSP Page</title>
+        <title>Exo1 Good Page</title>
     </head>
     <%
-        User user = null;
+        Member user = null;
         if (session != null) {
-            user = (User) session.getAttribute("user");
+            user = (Member) session.getAttribute("user");
         }
     %>
     <body>
         <div class="container mt-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6">
-                    <h1>Bienvenu(e) <i><%= user.getUsername()%></i> au portail </h1>
+                    <h1>Bienvenu(e) <i><%= user.getNom()%></i> au portail </h1>
                 </div>
                 
                 <p> 

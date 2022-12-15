@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.isi.exosessiontodolist;
+package com.isi.exo1.controller;
 
+import com.isi.exo1.dao.MemberManager;
+import com.isi.exo1.entity.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author isi
  */
-@WebServlet(name = "ListServlet", urlPatterns = {"/todo"})
-public class ListServlet extends HttpServlet {
-
-    List<Item> items = new ArrayList<>();
+@WebServlet(name = "filmServlet", urlPatterns = {"/home", "/login", "/logout"})
+public class filmServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,9 +33,31 @@ public class ListServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        switch (request.getServletPath()) {
+            case "/login":
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
 
-        request.getRequestDispatcher("WEB-INF/todo.jsp").forward(request, response);
+                Member user = MemberManager.findOneBy(username, password);
 
+                if (user != null) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("WEB-INF/exo1good.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("WEB-INF/exo1error.jsp").forward(request, response);
+                }
+                break;
+            case "logout":
+                HttpSession session = request.getSession();
+                session.invalidate();
+                response.sendRedirect("index");
+                break;
+            default:
+                request.getRequestDispatcher("WEB-INF/exo1.jsp").forward(request, response);
+                break;
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,18 +86,7 @@ public class ListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String task = (String) request.getAttribute("taskInput");
-
-        if (task != null) {
-            Item item = new Item(task, 0, true);
-            items.add(item);
-        }
-
-        HttpSession session = request.getSession(true);
-
-        session.setAttribute("items", items);
-        request.getRequestDispatcher("WEB-INF/todo.jsp").forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**

@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles.css">
-        <title>JSP Page</title>
+        <title>Exo1 Error Page</title>
     </head>
     <body>
         <div id="error-page">
@@ -25,7 +25,7 @@
                     Sorry, the page you're looking for doesn't exist. If you think something is broken, report a problem.
                 </p>
                 <div class="btns">
-                    <a href="index.html">return home</a>
+                    <a href="home">return home</a>
                 </div>
             </div>
         </div>

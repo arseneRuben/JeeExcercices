@@ -30,10 +30,8 @@ public class PreferenceServlet extends HttpServlet {
 
         if (cookies == null) {
             response.sendRedirect("login.jsp");
-
         } else {
             request.getRequestDispatcher("welcome.jsp").forward(request, response);
-
         }
 
         // this.print(request, response);

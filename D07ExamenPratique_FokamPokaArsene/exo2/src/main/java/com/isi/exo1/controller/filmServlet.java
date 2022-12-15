@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.isi.exosessiontodolist;
+package com.isi.exo1.controller;
 
+import com.isi.exo1.dao.MovieManager;
+import com.isi.exo1.entity.Movie;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author isi
  */
-@WebServlet(name = "ListServlet", urlPatterns = {"/todo"})
-public class ListServlet extends HttpServlet {
-
-    List<Item> items = new ArrayList<>();
+@WebServlet(name = "filmServlet", urlPatterns = {"/exo2"})
+public class filmServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,9 +34,17 @@ public class ListServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        switch (request.getServletPath()) {
+            case "/exo2":
 
-        request.getRequestDispatcher("WEB-INF/todo.jsp").forward(request, response);
+                List<Movie> movies = MovieManager.findAll();
 
+                request.setAttribute("movies", movies);
+                request.getRequestDispatcher("WEB-INF/exo2.jsp").forward(request, response);
+
+                break;
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,18 +73,7 @@ public class ListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String task = (String) request.getAttribute("taskInput");
-
-        if (task != null) {
-            Item item = new Item(task, 0, true);
-            items.add(item);
-        }
-
-        HttpSession session = request.getSession(true);
-
-        session.setAttribute("items", items);
-        request.getRequestDispatcher("WEB-INF/todo.jsp").forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**
