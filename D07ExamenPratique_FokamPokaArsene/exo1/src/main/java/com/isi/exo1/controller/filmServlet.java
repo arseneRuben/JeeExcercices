@@ -43,7 +43,7 @@ public class filmServlet extends HttpServlet {
                 if (user != null) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("user", user);
-                    request.getRequestDispatcher("WEB-INF/exo1good.jsp").forward(request, response);
+                    request.getRequestDispatcher("WEB-INF/films.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("WEB-INF/exo1error.jsp").forward(request, response);
                 }

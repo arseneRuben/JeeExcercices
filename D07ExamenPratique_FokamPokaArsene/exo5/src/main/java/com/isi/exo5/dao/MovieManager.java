@@ -4,7 +4,7 @@
  */
 package com.isi.exo5.dao;
 
-import com.isi.exo4.entity.Movie;
+import com.isi.exo5.entity.Movie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

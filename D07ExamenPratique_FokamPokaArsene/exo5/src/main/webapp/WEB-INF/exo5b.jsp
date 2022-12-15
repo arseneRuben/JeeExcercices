@@ -4,9 +4,9 @@
     Author     : isi
 --%>
 
-<%@page import="com.isi.exo4.entity.Actor"%>
+<%@page import="com.isi.exo5.entity.Actor"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.isi.exo4.entity.Movie"%>
+<%@page import="com.isi.exo5.entity.Movie"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
