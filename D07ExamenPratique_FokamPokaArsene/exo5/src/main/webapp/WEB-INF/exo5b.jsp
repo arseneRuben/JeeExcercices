@@ -24,7 +24,7 @@
     %>
     <body>
         <div class="container mt-5">
-            <h1> Liste des acteurs du preferes de l'utilisateur d'id=1 </h1>
+            <h1> Liste des acteurs du preferes de l'utilisateur </h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
                     <a class="btn btn-primary" href="exo4a"> retour a la liste des acteurs</a>

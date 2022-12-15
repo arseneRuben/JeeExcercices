@@ -24,10 +24,10 @@
     %>
     <body>
         <div class="container mt-5">
-            <h1> Liste des acteurs du film d'id=1 </h1>
+            <h1> Liste des acteurs du film  </h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
-                    <a class="btn btn-primary" href="exo4a"> retour a la liste des acteur</a>
+                    <a class="btn btn-primary" href="home"> se deconnecter</a>
                 </div>
                 <div class="col-md-6">
                     <table class="table">
@@ -43,7 +43,7 @@
                             %>
                             <tr>
                                 <td> <%= actor.getName()%></td>
-                                <td> <a href="exo5b">Ajouter</a></td>
+                                <td> <a href="exo5b?actorid=<%= actor.getId() %>">Ajouter</a></td>
                             </tr>
                             <%
                               }

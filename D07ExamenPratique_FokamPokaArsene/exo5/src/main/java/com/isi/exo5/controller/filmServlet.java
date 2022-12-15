@@ -6,6 +6,8 @@ package com.isi.exo5.controller;
 
 import com.isi.exo5.dao.ActorManager;
 import com.isi.exo5.dao.MemberManager;
+import com.isi.exo5.dao.PreferedActorManager;
+
 import com.isi.exo5.dao.MovieManager;
 import com.isi.exo5.entity.Actor;
 import com.isi.exo5.entity.Movie;
@@ -24,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author isi
  */
-@WebServlet(name = "filmServlet", urlPatterns = {  "/home", "/login","/exo4a","/exo4b", "/exo5a",  "/exo5b"})
+@WebServlet(name = "filmServlet", urlPatterns = {"/home", "/login", "/exo4a", "/exo4b", "/exo5a", "/exo5b"})
 public class filmServlet extends HttpServlet {
 
     /**
@@ -43,17 +45,17 @@ public class filmServlet extends HttpServlet {
         List<Actor> actors;
         request.setAttribute("movies", movies);
         request.setAttribute("years", years);
-
+         HttpSession session;
         switch (request.getServletPath()) {
-          
-             case "/login":
+
+            case "/login":
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
 
                 Member user = MemberManager.findOneBy(username, password);
 
                 if (user != null) {
-                    HttpSession session = request.getSession(true);
+                     session = request.getSession(true);
                     session.setAttribute("user", user);
                     actors = ActorManager.findByUser(user.getId());
                     request.setAttribute("actors", actors);
@@ -62,7 +64,7 @@ public class filmServlet extends HttpServlet {
                     request.getRequestDispatcher("WEB-INF/exo1error.jsp").forward(request, response);
                 }
                 break;
-             case "/exo4a":
+            case "/exo4a":
                 String yearS = request.getParameter("selectedYear");
                 if (yearS != null) {
                     movies = MovieManager.findByYear(yearS);
@@ -70,6 +72,7 @@ public class filmServlet extends HttpServlet {
                 }
                 request.getRequestDispatcher("WEB-INF/exo4a.jsp").forward(request, response);
                 break;
+            
             case "/exo4b":
                 actors = ActorManager.findByFilm(Integer.parseInt(request.getParameter("movieId")));
                 if (actors != null) {
@@ -88,14 +91,24 @@ public class filmServlet extends HttpServlet {
 
                 break;
             case "/exo5b":
-                actors = ActorManager.findByUser(1);
-                if (actors != null) {
-                    request.setAttribute("actors", actors);
-                    request.getRequestDispatcher("WEB-INF/exo5b.jsp").forward(request, response);
+                session = request.getSession(false);
+                if (session != null) {
+                    user = (Member) session.getAttribute("user");
+                    String actorId = request.getParameter("actorId");
+                    if (actorId != null) {
+                        PreferedActorManager.insert(user.getId(), Integer.parseInt(actorId));
+                    }
+                    actors = ActorManager.findByUser(user.getId());
+
+                    if (actors != null) {
+                        request.setAttribute("actors", actors);
+                        request.getRequestDispatcher("WEB-INF/exo5b.jsp").forward(request, response);
+                    }
+
                 }
 
                 break;
-              default:
+            default:
                 request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
                 break;
 
