@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.isi.exo1.controller;
+package com.isi.exo4.controller;
 
-import com.isi.exo1.dao.MovieManager;
-import com.isi.exo1.entity.Movie;
+import com.isi.exo4.dao.ActorManager;
+import com.isi.exo4.dao.MovieManager;
+import com.isi.exo4.entity.Actor;
+import com.isi.exo4.entity.Movie;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author isi
  */
-@WebServlet(name = "filmServlet", urlPatterns = {"/exo3a", "/exo3b"})
+@WebServlet(name = "filmServlet", urlPatterns = {"/exo3a", "/exo3b", "/exo4a", "/exo4b"})
 public class filmServlet extends HttpServlet {
 
     /**
@@ -43,13 +45,20 @@ public class filmServlet extends HttpServlet {
 
                 break;
             case "/exo3b":
+            case "/exo4a":
                 String yearS = request.getParameter("selectedYear");
                 if (yearS != null) {
                     movies = MovieManager.findByYear(yearS);
                     request.setAttribute("movies", movies);
-
                 }
-                request.getRequestDispatcher("WEB-INF/exo3b.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/exo4a.jsp").forward(request, response);
+                break;
+            case "/exo4b":
+                List<Actor> actors = ActorManager.findByFilm(Integer.parseInt(request.getParameter("movieId")));
+                if (actors != null) {
+                    request.setAttribute("actors", actors);
+                    request.getRequestDispatcher("WEB-INF/exo4b.jsp").forward(request, response);
+                }
 
                 break;
 
